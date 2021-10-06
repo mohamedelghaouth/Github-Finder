@@ -9,17 +9,25 @@ username.addEventListener("input", fetchData);
 
 
 function fetchData(){
-    github.getuser(username.value)
-    .then((user) => {
-        return github.getuserAvatar(user);
-    })
-    .then((user) => {
-        return github.getuserLatestRepos(user);
-    })
-    .then((user) => {
-         ui.showProfile(user);
-    })
-    .catch((err) => {
-        
-    });
+    if(username.value !== ""){
+        github.getuser(username.value)
+        .then((data) => {
+            if(data.message === "Not Found"){
+                ui.showAlert();
+            }else {
+                return github.getuserAvatar(username.value);
+            }
+        })
+        .then((user) => {
+            return github.getuserLatestRepos(user);
+        })
+        .then((user) => {
+            ui.showProfile(user);
+        })
+        .catch((err) => {
+            
+        });
+    }else {
+        ui.clear();
+    }
 }

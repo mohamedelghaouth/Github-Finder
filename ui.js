@@ -69,9 +69,29 @@ class UI {
             </ul>
         </div>
         `;
-
-
     }
 
+    clear(){
+        let profile = document.querySelector("#profile");
+        profile.innerHTML = "";
+
+        let repos = document.querySelector("#repos");
+        repos.innerHTML = "";
+    }
+
+    showAlert(){
+        let div = document.createElement("div");
+        profile.className = "alert alert-dismissible alert-danger";
+        profile.innerHTML = `user does not exist`;
+
+        let form = document.querySelector("#form");
+
+        document.body.insertBefore(div, form);
+
+        setTimeout(function(){
+            let divAlert = document.querySelector(".alert");
+            divAlert.remove();
+        }, 3000)
+    }
     
 }
