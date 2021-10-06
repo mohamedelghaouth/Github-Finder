@@ -1,4 +1,4 @@
-const github = new Github();
+const github = new Github("xx", "xx");
 const ui = new UI();
 
 
